@@ -8,14 +8,24 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "next": "^8.1.0",
+    "apollo-boost": "^0.4.3",
+    "apollo-link-context": "^1.0.18",
+    "cookie": "^0.4.0",
+    "graphql": "^14.3.1",
+    "https-proxy-agent": "^2.2.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^8.1.1-canary.57",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.8",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "@types/cookie": "^0.3.3",
+    "@types/graphql": "^14.2.2",
     "@types/node": "^11.13.9",
     "@types/react": "^16.8.15",
-    "@types/react-dom": "^16.0.11"
+    "@types/react-dom": "^16.0.11",
+    "typescript": "^3.5.2"
   },
   "license": "ISC"
 }
