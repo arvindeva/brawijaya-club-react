@@ -1,23 +1,13 @@
 import * as React from 'react';
 import { gql } from 'apollo-boost';
 import { NextPage } from 'next';
-import { Mutation, Query } from 'react-apollo';
+import { Query } from 'react-apollo';
 
 import Layout from '../components/Layout';
-
-const SIGNIN_MUTATION = gql`
-  mutation {
-    signIn(login: "arvindeva", password: "arvindeva") {
-      token
-    }
-  }
-`;
-
-const SIGNOUT_MUTATION = gql`
-  mutation {
-    signOut
-  }
-`;
+import {
+  SignInComponent,
+  SignOutComponent
+} from '../generated/apolloComponents';
 
 const ME_QUERY = gql`
   query {
@@ -47,26 +37,22 @@ const IndexPage: NextPage = () => {
           );
         }}
       </Query>
-      <Mutation
-        mutation={SIGNIN_MUTATION}
-        refetchQueries={[{ query: ME_QUERY }]}
-      >
-        {(signIn: any) => (
+      <SignInComponent refetchQueries={[{ query: ME_QUERY }]}>
+        {signIn => (
           <button
             onClick={async () => {
-              const response = await signIn();
+              const response = await signIn({
+                variables: { login: 'arvindeva', password: 'arvindeva' }
+              });
               console.log(response);
             }}
           >
             Call login mutation
           </button>
         )}
-      </Mutation>
-      <Mutation
-        mutation={SIGNOUT_MUTATION}
-        refetchQueries={[{ query: ME_QUERY }]}
-      >
-        {(signOut: any) => (
+      </SignInComponent>
+      <SignOutComponent refetchQueries={[{ query: ME_QUERY }]}>
+        {signOut => (
           <button
             onClick={async () => {
               const response = await signOut();
@@ -76,7 +62,7 @@ const IndexPage: NextPage = () => {
             Call signout mutation
           </button>
         )}
-      </Mutation>
+      </SignOutComponent>
     </Layout>
   );
 };
