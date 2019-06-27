@@ -1,7 +1,6 @@
 import gql from 'graphql-tag';
 import * as ReactApollo from 'react-apollo';
 import * as React from 'react';
-import * as ReactApolloHooks from 'react-apollo-hooks';
 export type Maybe<T> = T | null;
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
@@ -192,18 +191,6 @@ export function withSignIn<TProps, TChildProps = {}>(
     ...operationOptions,
   });
 }
-
-export function useSignInMutation(
-  baseOptions?: ReactApolloHooks.MutationHookOptions<
-    SignInMutation,
-    SignInMutationVariables
-  >
-) {
-  return ReactApolloHooks.useMutation<SignInMutation, SignInMutationVariables>(
-    SignInDocument,
-    baseOptions
-  );
-}
 export const SignOutDocument = gql`
   mutation SignOut {
     signOut
@@ -247,18 +234,6 @@ export function withSignOut<TProps, TChildProps = {}>(
     ...operationOptions,
   });
 }
-
-export function useSignOutMutation(
-  baseOptions?: ReactApolloHooks.MutationHookOptions<
-    SignOutMutation,
-    SignOutMutationVariables
-  >
-) {
-  return ReactApolloHooks.useMutation<
-    SignOutMutation,
-    SignOutMutationVariables
-  >(SignOutDocument, baseOptions);
-}
 export const MeDocument = gql`
   query Me {
     me {
@@ -297,13 +272,4 @@ export function withMe<TProps, TChildProps = {}>(
     alias: 'withMe',
     ...operationOptions,
   });
-}
-
-export function useMeQuery(
-  baseOptions?: ReactApolloHooks.QueryHookOptions<MeQueryVariables>
-) {
-  return ReactApolloHooks.useQuery<MeQuery, MeQueryVariables>(
-    MeDocument,
-    baseOptions
-  );
 }
