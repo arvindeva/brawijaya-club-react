@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NextPage } from 'next';
+import styled from 'styled-components';
 
 import Layout from '../components/Layout';
 import {
@@ -9,7 +9,11 @@ import {
 } from '../generated/apolloComponents';
 import { ME_QUERY } from '../graphql/user/queries/me';
 
-const IndexPage: NextPage = () => {
+const Button = styled.button`
+  color: red;
+`;
+
+const IndexPage = () => {
   return (
     <Layout title="Home">
       <MeComponent>
@@ -23,7 +27,7 @@ const IndexPage: NextPage = () => {
       </MeComponent>
       <SignInComponent refetchQueries={[{ query: ME_QUERY }]}>
         {signIn => (
-          <button
+          <Button
             onClick={async () => {
               const response = await signIn({
                 variables: { login: 'arvindeva', password: 'arvindeva' },
@@ -32,19 +36,19 @@ const IndexPage: NextPage = () => {
             }}
           >
             Call login mutation
-          </button>
+          </Button>
         )}
       </SignInComponent>
       <SignOutComponent refetchQueries={[{ query: ME_QUERY }]}>
         {signOut => (
-          <button
+          <Button
             onClick={async () => {
               const response = await signOut();
               console.log(response);
             }}
           >
             Call signout mutation
-          </button>
+          </Button>
         )}
       </SignOutComponent>
     </Layout>

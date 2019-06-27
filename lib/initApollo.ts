@@ -51,11 +51,11 @@ export default function initApollo(initialState: any, options: any) {
     let fetchOptions = {};
     // If you are using a https_proxy, add fetchOptions with 'https-proxy-agent' agent instance
     // 'https-proxy-agent' is required here because it's a sever-side only module
-    if (process.env.https_proxy) {
-      fetchOptions = {
-        agent: new (require('https-proxy-agent'))(process.env.https_proxy),
-      };
-    }
+    // if (process.env.https_proxy) {
+    //   fetchOptions = {
+    //     agent: new (require('https-proxy-agent'))(process.env.https_proxy),
+    //   };
+    // }
     return create(initialState, {
       ...options,
       fetchOptions,
