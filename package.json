@@ -32,8 +32,11 @@
     "@types/react": "^16.8.15",
     "@types/react-dom": "^16.0.11",
     "@types/styled-components": "^4.1.16",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
     "@zeit/next-typescript": "^1.1.1",
     "babel-plugin-styled-components": "^1.10.3",
+    "eslint": "^6.0.1",
     "typescript": "^3.5.2"
   },
   "license": "ISC"
