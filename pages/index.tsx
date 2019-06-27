@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Link from 'next/link';
 import { gql } from 'apollo-boost';
 import { NextPage } from 'next';
 import { Mutation, Query } from 'react-apollo';
@@ -39,12 +38,15 @@ interface Data {
 const IndexPage: NextPage = () => {
   return (
     <Layout title="Home">
-      <h1>Hi 👋</h1>
-      <p>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </p>
+      <Query<Data> query={ME_QUERY}>
+        {({ loading, error, data }) => {
+          if (loading) return <p>loading</p>;
+          if (error) return <p>error</p>;
+          return (
+            <h1>Hi, {data && data.me ? data.me.username : 'please sign in'}</h1>
+          );
+        }}
+      </Query>
       <Mutation
         mutation={SIGNIN_MUTATION}
         refetchQueries={[{ query: ME_QUERY }]}
@@ -75,11 +77,6 @@ const IndexPage: NextPage = () => {
           </button>
         )}
       </Mutation>
-      <Query<Data> query={ME_QUERY}>
-        {({ data }: { data: any }) => {
-          return <p>{data.me ? data.me.username : 'please sign in'}</p>;
-        }}
-      </Query>
     </Layout>
   );
 };
