@@ -1,7 +1,7 @@
 import {
   ApolloClient,
   InMemoryCache,
-  NormalizedCacheObject
+  NormalizedCacheObject,
 } from 'apollo-boost';
 import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
@@ -21,7 +21,7 @@ function create(
   const httpLink = createHttpLink({
     uri: 'http://localhost:4000/graphql',
     credentials: 'include',
-    fetchOptions
+    fetchOptions,
   });
 
   const authLink = setContext((_, { headers }) => {
@@ -29,8 +29,8 @@ function create(
     return {
       headers: {
         ...headers,
-        cookie: token ? `token=${token}` : ''
-      }
+        cookie: token ? `token=${token}` : '',
+      },
     };
   });
 
@@ -40,7 +40,7 @@ function create(
     connectToDevTools: isBrowser,
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: authLink.concat(httpLink),
-    cache: new InMemoryCache().restore(initialState || {})
+    cache: new InMemoryCache().restore(initialState || {}),
   });
 }
 
@@ -53,12 +53,12 @@ export default function initApollo(initialState: any, options: any) {
     // 'https-proxy-agent' is required here because it's a sever-side only module
     if (process.env.https_proxy) {
       fetchOptions = {
-        agent: new (require('https-proxy-agent'))(process.env.https_proxy)
+        agent: new (require('https-proxy-agent'))(process.env.https_proxy),
       };
     }
     return create(initialState, {
       ...options,
-      fetchOptions
+      fetchOptions,
     });
   }
 
