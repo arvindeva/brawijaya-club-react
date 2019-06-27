@@ -26,7 +26,7 @@ class InitialPropsDetail extends React.Component<Props> {
 
     if (errors) {
       return (
-        <Layout title={`Error | Next.js + TypeScript Example`}>
+        <Layout title={`Error`}>
           <p>
             <span style={{ color: 'red' }}>Error:</span> {errors}
           </p>
@@ -35,9 +35,7 @@ class InitialPropsDetail extends React.Component<Props> {
     }
 
     return (
-      <Layout
-        title={`${item ? item.name : 'Detail'} | Next.js + TypeScript Example`}
-      >
+      <Layout title={`${item ? item.name : 'Detail'}`}>
         {item && <ListDetail item={item} />}
       </Layout>
     );

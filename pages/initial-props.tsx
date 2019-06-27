@@ -11,7 +11,7 @@ type Props = {
 };
 
 const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
-  <Layout title="List Example (as Functional Component) | Next.js + TypeScript Example">
+  <Layout title="List Example (as Functional Component)">
     <h1>List Example (as Function Component)</h1>
     <p>You are currently on: {pathname}</p>
     <List items={items} />
@@ -24,7 +24,7 @@ const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
 );
 
 WithInitialProps.getInitialProps = async ({ pathname }) => {
-  // Example for including initial props in a Next.js function compnent page.
+  // Example for including initial props in a Next.js function component page.
   // Don't forget to include the respective types for any props passed into
   // the component.
   const items: User[] = await findAll();
