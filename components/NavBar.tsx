@@ -6,10 +6,9 @@ const StyledNavBar = styled.div`
   position: fixed;
   width: 100%;
   height: 70px;
-  /* background-color: #ff403a; */
+  background-color: #ff403a;
   display: flex;
   justify-content: space-between;
-  color: black;
   align-items: center;
   padding: 0 4rem;
 
@@ -28,7 +27,7 @@ const StyledNavBar = styled.div`
   }
 
   a {
-    color: black;
+    color: white;
     text-decoration: none;
     font-size: 1rem;
   }
@@ -39,21 +38,15 @@ const NavBar = () => (
     <StyledNavBar>
       <div>
         <Link href="/">
-          <a className="logo">BRAWIJAYA</a>
+          <a className="logo">FINTECH</a>
         </Link>
       </div>
       <div className="nav-links">
-        <Link href="/">
-          <a>Home</a>
-        </Link>
         <Link href="/about">
           <a>About</a>
         </Link>
         <Link href="/initial-props">
           <a>With Initial Props</a>
-        </Link>
-        <Link href="/signup">
-          <a>Sign Up</a>
         </Link>
         <Link href="/signin">
           <a>Sign In</a>
