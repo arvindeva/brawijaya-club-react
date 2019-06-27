@@ -1,15 +1,25 @@
 import * as React from 'react';
 import Head from 'next/head';
+import styled from 'styled-components';
 
-import Nav from './Nav';
+import NavBar from './NavBar';
 
 type Props = {
   title?: string;
 };
 
+const Main = styled.main`
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  min-height: 100vh;
+`;
+
 const Layout: React.FunctionComponent<Props> = ({
   children,
-  title = 'Title'
+  title = 'Title',
 }) => (
   <div>
     <Head>
@@ -18,9 +28,9 @@ const Layout: React.FunctionComponent<Props> = ({
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <header>
-      <Nav />
+      <NavBar />
     </header>
-    {children}
+    <Main>{children}</Main>
     <footer>
       <hr />
       <span>I'm here to stay (Footer)</span>

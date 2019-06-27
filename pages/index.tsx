@@ -4,26 +4,26 @@ import Layout from '../components/Layout';
 import {
   SignInComponent,
   SignOutComponent,
-  MeComponent,
 } from '../generated/apolloComponents';
 import { ME_QUERY } from '../graphql/user/queries/me';
+import Leaderboards from '../components/Leaderboards';
 
 const Button = styled.button`
-  color: red;
+  color: white;
+  background: #ff403a;
+  border: none;
+  border-radius: 0.4rem;
+  font-family: 'Helvetica', 'Source Sans Pro', sans-serif;
+  padding: 1rem;
+  font-size: 1rem;
+  margin: 1rem;
+  cursor: pointer;
 `;
 
 const IndexPage = () => {
   return (
     <Layout title="Home">
-      <MeComponent>
-        {({ loading, error, data }) => {
-          if (loading) return <p>loading</p>;
-          if (error) return <p>error</p>;
-          return (
-            <h1>Hi, {data && data.me ? data.me.username : 'please sign in'}</h1>
-          );
-        }}
-      </MeComponent>
+      <Leaderboards />
       <SignInComponent refetchQueries={[{ query: ME_QUERY }]}>
         {signIn => (
           <Button
@@ -34,7 +34,7 @@ const IndexPage = () => {
               console.log(response);
             }}
           >
-            Call login mutation
+            Call SignIn mutation
           </Button>
         )}
       </SignInComponent>
@@ -46,7 +46,7 @@ const IndexPage = () => {
               console.log(response);
             }}
           >
-            Call signout mutation
+            Call SignOut mutation
           </Button>
         )}
       </SignOutComponent>

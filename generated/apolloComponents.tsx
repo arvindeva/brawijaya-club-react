@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import * as ReactApollo from 'react-apollo';
 import * as React from 'react';
+import * as ReactApollo from 'react-apollo';
 export type Maybe<T> = T | null;
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
@@ -124,6 +124,17 @@ export type User = {
   createdAt: Scalars['String'];
   updatedAt: Scalars['String'];
 };
+export type LeaderboardsQueryVariables = {};
+
+export type LeaderboardsQuery = { __typename?: 'Query' } & {
+  leaderboards: Array<
+    { __typename?: 'Exercise' } & Pick<
+      Exercise,
+      'id' | 'name' | 'sets' | 'reps' | 'weight'
+    > & { user: { __typename?: 'User' } & Pick<User, 'id' | 'username'> }
+  >;
+};
+
 export type SignInMutationVariables = {
   login: Scalars['String'];
   password: Scalars['String'];
@@ -146,6 +157,55 @@ export type MeQuery = { __typename?: 'Query' } & {
   me: Maybe<{ __typename?: 'User' } & Pick<User, 'id' | 'username'>>;
 };
 
+export const LeaderboardsDocument = gql`
+  query Leaderboards {
+    leaderboards(name: "bench") {
+      id
+      name
+      sets
+      reps
+      weight
+      user {
+        id
+        username
+      }
+    }
+  }
+`;
+export type LeaderboardsComponentProps = Omit<
+  ReactApollo.QueryProps<LeaderboardsQuery, LeaderboardsQueryVariables>,
+  'query'
+>;
+
+export const LeaderboardsComponent = (props: LeaderboardsComponentProps) => (
+  <ReactApollo.Query<LeaderboardsQuery, LeaderboardsQueryVariables>
+    query={LeaderboardsDocument}
+    {...props}
+  />
+);
+
+export type LeaderboardsProps<TChildProps = {}> = Partial<
+  ReactApollo.DataProps<LeaderboardsQuery, LeaderboardsQueryVariables>
+> &
+  TChildProps;
+export function withLeaderboards<TProps, TChildProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    LeaderboardsQuery,
+    LeaderboardsQueryVariables,
+    LeaderboardsProps<TChildProps>
+  >
+) {
+  return ReactApollo.withQuery<
+    TProps,
+    LeaderboardsQuery,
+    LeaderboardsQueryVariables,
+    LeaderboardsProps<TChildProps>
+  >(LeaderboardsDocument, {
+    alias: 'withLeaderboards',
+    ...operationOptions,
+  });
+}
 export const SignInDocument = gql`
   mutation SignIn($login: String!, $password: String!) {
     signIn(login: $login, password: $password) {

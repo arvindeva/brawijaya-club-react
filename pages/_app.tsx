@@ -1,7 +1,9 @@
 import App, { Container } from 'next/app';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
+
 import withApollo from '../lib/withApollo';
+import GlobalStyle from '../lib/globalStyle';
 
 class MyApp extends App<any> {
   render() {
@@ -9,6 +11,7 @@ class MyApp extends App<any> {
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
+          <GlobalStyle />
           <Component {...pageProps} />
         </ApolloProvider>
       </Container>
