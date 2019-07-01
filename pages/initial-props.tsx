@@ -1,16 +1,10 @@
-import { NextPage } from 'next';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import List from '../components/List';
 import { User } from '../interfaces';
 import { findAll } from '../utils/sample-api';
 
-type Props = {
-  items: User[];
-  pathname: string;
-};
-
-const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
+const WithInitialProps = ({ items, pathname }: any) => (
   <Layout title="List Example (as Functional Component)">
     <h1>List Example (as Function Component)</h1>
     <p>You are currently on: {pathname}</p>
@@ -23,7 +17,7 @@ const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
   </Layout>
 );
 
-WithInitialProps.getInitialProps = async ({ pathname }) => {
+WithInitialProps.getInitialProps = async ({ pathname }: any) => {
   // Example for including initial props in a Next.js function component page.
   // Don't forget to include the respective types for any props passed into
   // the component.

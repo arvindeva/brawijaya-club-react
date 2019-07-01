@@ -38,7 +38,7 @@ const NavBar = () => (
     <StyledNavBar>
       <div>
         <Link href="/">
-          <a className="logo">FINTECH</a>
+          <a className="logo">O</a>
         </Link>
       </div>
       <div className="nav-links">

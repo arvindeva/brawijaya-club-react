@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { NextPageContext } from 'next';
 import Layout from '../components/Layout';
 import { User } from '../interfaces';
 import { findData } from '../utils/sample-api';
@@ -11,7 +10,7 @@ type Props = {
 };
 
 class InitialPropsDetail extends React.Component<Props> {
-  static getInitialProps = async ({ query }: NextPageContext) => {
+  static getInitialProps = async ({ query }: any) => {
     try {
       const { id } = query;
       const item = await findData(Array.isArray(id) ? id[0] : id);

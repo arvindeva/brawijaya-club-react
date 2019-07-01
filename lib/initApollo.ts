@@ -34,7 +34,6 @@ function create(
     };
   });
 
-  // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
   const isBrowser = typeof window !== 'undefined';
   return new ApolloClient({
     connectToDevTools: isBrowser,
@@ -45,17 +44,9 @@ function create(
 }
 
 export default function initApollo(initialState: any, options: any) {
-  // Make sure to create a new client for every server-side request so that data
-  // isn't shared between connections (which would be bad)
   if (typeof window === 'undefined') {
     let fetchOptions = {};
-    // If you are using a https_proxy, add fetchOptions with 'https-proxy-agent' agent instance
-    // 'https-proxy-agent' is required here because it's a sever-side only module
-    // if (process.env.https_proxy) {
-    //   fetchOptions = {
-    //     agent: new (require('https-proxy-agent'))(process.env.https_proxy),
-    //   };
-    // }
+
     return create(initialState, {
       ...options,
       fetchOptions,
