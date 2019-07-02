@@ -8,7 +8,7 @@ import {
 import { ME_QUERY } from '../graphql/user/queries/me';
 import Leaderboards from '../components/Leaderboards';
 
-const Button = styled.button`
+export const Button = styled.button`
   color: white;
   background: #ff403a;
   border: none;

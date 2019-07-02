@@ -151,6 +151,16 @@ export type SignOutMutation = { __typename?: 'Mutation' } & Pick<
   'signOut'
 >;
 
+export type SignUpMutationVariables = {
+  username: Scalars['String'];
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type SignUpMutation = { __typename?: 'Mutation' } & {
+  signUp: { __typename?: 'Token' } & Pick<Token, 'token'>;
+};
+
 export type MeQueryVariables = {};
 
 export type MeQuery = { __typename?: 'Query' } & {
@@ -291,6 +301,51 @@ export function withSignOut<TProps, TChildProps = {}>(
     SignOutProps<TChildProps>
   >(SignOutDocument, {
     alias: 'withSignOut',
+    ...operationOptions,
+  });
+}
+export const SignUpDocument = gql`
+  mutation SignUp($username: String!, $email: String!, $password: String!) {
+    signUp(username: $username, email: $email, password: $password) {
+      token
+    }
+  }
+`;
+export type SignUpMutationFn = ReactApollo.MutationFn<
+  SignUpMutation,
+  SignUpMutationVariables
+>;
+export type SignUpComponentProps = Omit<
+  ReactApollo.MutationProps<SignUpMutation, SignUpMutationVariables>,
+  'mutation'
+>;
+
+export const SignUpComponent = (props: SignUpComponentProps) => (
+  <ReactApollo.Mutation<SignUpMutation, SignUpMutationVariables>
+    mutation={SignUpDocument}
+    {...props}
+  />
+);
+
+export type SignUpProps<TChildProps = {}> = Partial<
+  ReactApollo.MutateProps<SignUpMutation, SignUpMutationVariables>
+> &
+  TChildProps;
+export function withSignUp<TProps, TChildProps = {}>(
+  operationOptions?: ReactApollo.OperationOption<
+    TProps,
+    SignUpMutation,
+    SignUpMutationVariables,
+    SignUpProps<TChildProps>
+  >
+) {
+  return ReactApollo.withMutation<
+    TProps,
+    SignUpMutation,
+    SignUpMutationVariables,
+    SignUpProps<TChildProps>
+  >(SignUpDocument, {
+    alias: 'withSignUp',
     ...operationOptions,
   });
 }

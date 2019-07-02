@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { MeComponent, SignOutComponent } from '../generated/apolloComponents';
+import { ME_QUERY } from '../graphql/user/queries/me';
+import { Button } from '../pages/index';
 
 const StyledNavBar = styled.div`
   position: fixed;
@@ -24,6 +27,7 @@ const StyledNavBar = styled.div`
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     grid-gap: 2rem;
+    align-items: center;
   }
 
   a {
@@ -35,24 +39,50 @@ const StyledNavBar = styled.div`
 
 const NavBar = () => (
   <nav>
-    <StyledNavBar>
-      <div>
-        <Link href="/">
-          <a className="logo">O</a>
-        </Link>
-      </div>
-      <div className="nav-links">
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-        <Link href="/initial-props">
-          <a>With Initial Props</a>
-        </Link>
-        <Link href="/signin">
-          <a>Sign In</a>
-        </Link>
-      </div>
-    </StyledNavBar>
+    <MeComponent>
+      {({ data, loading, error }) => {
+        return (
+          <StyledNavBar>
+            <div>
+              <Link href="/">
+                <a className="logo">O</a>
+              </Link>
+            </div>
+            <div className="nav-links">
+              <Link href="/about">
+                <a>About</a>
+              </Link>
+              <Link href="/initial-props">
+                <a>With Initial Props</a>
+              </Link>
+              {data && data.me ? (
+                <div>
+                  <Link href="/profile">
+                    <a>{data.me.username}</a>
+                  </Link>
+                  <SignOutComponent refetchQueries={[{ query: ME_QUERY }]}>
+                    {signOut => (
+                      <Button
+                        onClick={async () => {
+                          const response = await signOut();
+                          console.log(response);
+                        }}
+                      >
+                        Sign Out
+                      </Button>
+                    )}
+                  </SignOutComponent>
+                </div>
+              ) : (
+                <Link href="/signin">
+                  <a>Sign In</a>
+                </Link>
+              )}
+            </div>
+          </StyledNavBar>
+        );
+      }}
+    </MeComponent>
   </nav>
 );
 
