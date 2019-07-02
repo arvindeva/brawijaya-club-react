@@ -11,8 +11,13 @@ const SignUpPage: React.FunctionComponent = () => (
     <SignUpComponent refetchQueries={[{ query: ME_QUERY }]}>
       {signUp => (
         <Formik
-          onSubmit={async data => {
-            const { username, email, password } = data;
+          initialValues={{
+            email: '',
+            username: '',
+            password: '',
+          }}
+          onSubmit={async values => {
+            const { username, email, password } = values;
             const response = await signUp({
               variables: {
                 username,
@@ -20,13 +25,7 @@ const SignUpPage: React.FunctionComponent = () => (
                 password,
               },
             });
-
             console.log(response);
-          }}
-          initialValues={{
-            email: '',
-            username: '',
-            password: '',
           }}
         >
           {({ values, handleSubmit }) => {
@@ -60,7 +59,7 @@ const SignUpPage: React.FunctionComponent = () => (
                   />
                 </div>
                 <div>
-                  <button type="submit">Submit</button>
+                  <button type="submit">Sign Up</button>
                 </div>
               </form>
             );
