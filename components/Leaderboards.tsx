@@ -29,27 +29,6 @@ const Leaderboards = () => {
           );
         }}
       </LeaderboardsComponent>
-      <LeaderboardsComponent>
-        {({ loading, error, data }) => {
-          if (loading) return <p>loading</p>;
-          if (error) return <p>error</p>;
-          return (
-            <div>
-              {data &&
-                data.leaderboards.map(entry => {
-                  return (
-                    <div key={entry.id}>
-                      <h1>{entry.user.username}</h1>
-                      <p>Weight: {entry.weight}kg</p>
-                      <p>Sets: {entry.sets}</p>
-                      <p>Reps: {entry.reps}</p>
-                    </div>
-                  );
-                })}
-            </div>
-          );
-        }}
-      </LeaderboardsComponent>
     </StyledLeaderboards>
   );
 };
