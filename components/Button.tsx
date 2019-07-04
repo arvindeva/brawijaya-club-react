@@ -6,10 +6,12 @@ export const Button = styled.button`
   border: 2px solid #ff403a;
   border-radius: 0.4rem;
   font-family: 'Nunito', sans-serif;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   font-size: 1rem;
   cursor: pointer;
   transition: 0.2s;
+  min-width: 10rem;
+  margin: 1rem 0;
 
   &:hover {
     background: transparent;

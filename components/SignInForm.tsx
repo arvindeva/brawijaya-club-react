@@ -13,6 +13,7 @@ import { Button } from './Button';
 
 const StyledSignInForm = styled.div`
   text-align: center;
+  margin: 5rem 0;
 `;
 
 export interface FormValues {
@@ -35,7 +36,7 @@ const SignInForm: React.FC = () => {
       },
     });
     if (response.data.signIn.token) {
-      Router.push('/');
+      Router.push('/profile');
     }
   };
 

@@ -3,13 +3,18 @@ import styled from 'styled-components';
 import { FieldProps } from 'formik';
 import { FormValues } from './SignInForm';
 
+const InputWrapper = styled.div`
+  margin: 1rem 0;
+`;
+
 const TextInput = styled.input`
-  border: none;
-  border-bottom: 2px solid black;
+  border: 1px solid #dadfe1;
+  border-radius: 5px;
   height: 2rem;
   font-size: 1rem;
   font-family: 'Nunito', sans-serif;
   padding: 0 0.5rem;
+  min-width: 300px;
 `;
 
 const ErrorMessage = styled.div`
@@ -18,12 +23,14 @@ const ErrorMessage = styled.div`
 
 const InputLabel = styled.label`
   display: block;
+  color: #2e3131;
 `;
 
 interface Props {
   type: string;
   autoComplete: string;
   label: string;
+  placeholder: string;
 }
 
 type InputFieldProps = FieldProps<FormValues> & Props;
@@ -33,20 +40,25 @@ export const InputField: React.FC<InputFieldProps> = ({
   field,
   type,
   autoComplete,
-  label,
+  placeholder,
 }) => {
   const { name } = field;
   const { touched, errors } = form;
   return (
-    <>
-      <TextInput autoComplete={autoComplete} type={type} {...field} />
-      <InputLabel htmlFor={field.name}>{label}</InputLabel>
+    <InputWrapper>
+      <TextInput
+        placeholder={placeholder}
+        autoComplete={autoComplete}
+        type={type}
+        {...field}
+      />
+      <InputLabel htmlFor={field.name} />
       {touched[name as keyof typeof touched] &&
       errors[name as keyof typeof touched] ? (
         <ErrorMessage>
           <p>{errors[name as keyof typeof touched]}</p>
         </ErrorMessage>
       ) : null}
-    </>
+    </InputWrapper>
   );
 };

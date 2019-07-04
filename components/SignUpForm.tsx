@@ -1,10 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
 import Router from 'next/router';
+import { Formik, Field } from 'formik';
+
 import Layout from './Layout';
 import { SignUpComponent } from '../generated/apolloComponents';
 import { ME_QUERY } from '../graphql/user/queries/me';
-import { Formik, Field } from 'formik';
 import { InputField } from './InputField';
+import { Button } from './Button';
+
+const StyledSignUpForm = styled.div`
+  text-align: center;
+  margin: 5rem 0;
+`;
 
 const SignUpForm = () => {
   const handleSignUp = async (values: any, mutation: any) => {
@@ -34,7 +42,7 @@ const SignUpForm = () => {
           >
             {({ handleSubmit }) => {
               return (
-                <div>
+                <StyledSignUpForm>
                   <h1>Sign Up</h1>
                   <form onSubmit={handleSubmit}>
                     {error ? <p>{error.message}</p> : null}
@@ -42,7 +50,9 @@ const SignUpForm = () => {
                     <div>
                       <Field
                         name="email"
+                        label="Email"
                         placeholder="E-mail"
+                        autoComplete="off"
                         type="text"
                         component={InputField}
                       />
@@ -50,7 +60,9 @@ const SignUpForm = () => {
                     <div>
                       <Field
                         name="username"
+                        label="Username"
                         placeholder="Username"
+                        autoComplete="off"
                         type="text"
                         component={InputField}
                       />
@@ -58,16 +70,18 @@ const SignUpForm = () => {
                     <div>
                       <Field
                         name="password"
+                        label="Password"
                         placeholder="Password"
+                        autoComplete="off"
                         type="password"
                         component={InputField}
                       />
                     </div>
                     <div>
-                      <button type="submit">Sign Up</button>
+                      <Button type="submit">Sign Up</Button>
                     </div>
                   </form>
-                </div>
+                </StyledSignUpForm>
               );
             }}
           </Formik>

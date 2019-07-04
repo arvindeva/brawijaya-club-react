@@ -45,7 +45,7 @@ const NavBar = () => (
           <StyledNavBar>
             <div>
               <Link href="/">
-                <a className="logo">BRAWIJAYA CLUB</a>
+                <a className="logo">-</a>
               </Link>
             </div>
             <div className="nav-links">
