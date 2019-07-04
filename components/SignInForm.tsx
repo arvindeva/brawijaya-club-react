@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import Link from 'next/link';
 import Router from 'next/router';
 import { Formik, Field } from 'formik';
@@ -8,6 +9,11 @@ import Layout from './Layout';
 import { SignInComponent } from '../generated/apolloComponents';
 import { ME_QUERY } from '../graphql/user/queries/me';
 import { InputField } from './InputField';
+import { Button } from './Button';
+
+const StyledSignInForm = styled.div`
+  text-align: center;
+`;
 
 export interface FormValues {
   login: string;
@@ -20,7 +26,7 @@ const initialValues: FormValues = {
 };
 
 const SignInForm: React.FC = () => {
-  const handleSignIn = async (values: any, mutation: any) => {
+  const handleSignIn = async (values: FormValues, mutation: Function) => {
     const { login, password } = values;
     const response = await mutation({
       variables: {
@@ -47,37 +53,45 @@ const SignInForm: React.FC = () => {
           >
             {({ handleSubmit }) => {
               return (
-                <div>
+                <StyledSignInForm>
                   <h1>Sign In</h1>
                   <form onSubmit={handleSubmit}>
                     {loading ? <p>loading</p> : null}
                     {error ? <p>{error.message}</p> : null}
                     <div>
-                      <Field name="login" type="text" component={InputField} />
-                    </div>
-                    <div>
+                      <Field
+                        name="login"
+                        label="Login"
+                        placeholder="Email or username"
+                        type="text"
+                        autoComplete="off"
+                        component={InputField}
+                      />
                       <Field
                         name="password"
+                        label="Password"
+                        placeholder="Password"
                         type="password"
+                        autoComplete="off"
                         component={InputField}
                       />
                     </div>
                     <div>
-                      <button type="submit">Sign In</button>
+                      <Button type="submit">Sign In</Button>
                     </div>
                   </form>
-                </div>
+                  <p>
+                    Don't have an account?{' '}
+                    <Link href="/signup">
+                      <a>Sign Up</a>
+                    </Link>
+                  </p>
+                </StyledSignInForm>
               );
             }}
           </Formik>
         )}
       </SignInComponent>
-      <p>
-        Don't have an account?{' '}
-        <Link href="/signup">
-          <a>Sign Up</a>
-        </Link>
-      </p>
     </Layout>
   );
 };

@@ -17,16 +17,15 @@ const StyledNavBar = styled.div`
   padding: 0 4rem;
 
   .logo {
-    font-family: 'Helvetica', sans-serif;
     font-size: 2.5rem;
     font-weight: bold;
-    letter-spacing: 10px;
     text-decoration: none;
+    letter-spacing: 2px;
   }
 
   .nav-links {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto;
     grid-gap: 2rem;
     align-items: center;
   }
@@ -46,7 +45,7 @@ const NavBar = () => (
           <StyledNavBar>
             <div>
               <Link href="/">
-                <a className="logo">O</a>
+                <a className="logo">BRAWIJAYA CLUB</a>
               </Link>
             </div>
             <div className="nav-links">

@@ -32,7 +32,7 @@ const SignUpForm = () => {
             }}
             onSubmit={async values => handleSignUp(values, signUp)}
           >
-            {({ values, handleSubmit }) => {
+            {({ handleSubmit }) => {
               return (
                 <div>
                   <h1>Sign Up</h1>
@@ -45,7 +45,6 @@ const SignUpForm = () => {
                         placeholder="E-mail"
                         type="text"
                         component={InputField}
-                        value={values.email}
                       />
                     </div>
                     <div>
@@ -54,7 +53,6 @@ const SignUpForm = () => {
                         placeholder="Username"
                         type="text"
                         component={InputField}
-                        value={values.username}
                       />
                     </div>
                     <div>
@@ -63,7 +61,6 @@ const SignUpForm = () => {
                         placeholder="Password"
                         type="password"
                         component={InputField}
-                        value={values.password}
                       />
                     </div>
                     <div>

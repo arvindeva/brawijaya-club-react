@@ -24,32 +24,6 @@ const IndexPage = () => {
   return (
     <Layout title="Home">
       <Leaderboards />
-      <SignInComponent refetchQueries={[{ query: ME_QUERY }]}>
-        {signIn => (
-          <Button
-            onClick={async () => {
-              const response = await signIn({
-                variables: { login: 'arvindeva', password: 'arvindeva' },
-              });
-              console.log(response);
-            }}
-          >
-            Sign In mutation
-          </Button>
-        )}
-      </SignInComponent>
-      <SignOutComponent refetchQueries={[{ query: ME_QUERY }]}>
-        {signOut => (
-          <Button
-            onClick={async () => {
-              const response = await signOut();
-              console.log(response);
-            }}
-          >
-            Sign Out mutation
-          </Button>
-        )}
-      </SignOutComponent>
     </Layout>
   );
 };
