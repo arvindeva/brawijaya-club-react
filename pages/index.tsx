@@ -1,11 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
-import {
-  SignInComponent,
-  SignOutComponent,
-} from '../generated/apolloComponents';
-import { ME_QUERY } from '../graphql/user/queries/me';
 import Leaderboards from '../components/Leaderboards';
 
 export const Button = styled.button`

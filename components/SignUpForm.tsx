@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Router from 'next/router';
 import { Formik, Field } from 'formik';
+import { string, object } from 'yup';
 
 import Layout from './Layout';
 import { SignUpComponent } from '../generated/apolloComponents';
@@ -38,6 +39,16 @@ const SignUpForm = () => {
               username: '',
               password: '',
             }}
+            validationSchema={object().shape({
+              email: string()
+                .email('Must be an email')
+                .required('Email is required.'),
+              username: string()
+                .min(4, 'Must be at least 4 characters')
+                .required('Username is required.'),
+              password: string().required('Password is required'),
+            })}
+            validateOnChange={false}
             onSubmit={async values => handleSignUp(values, signUp)}
           >
             {({ handleSubmit }) => {
