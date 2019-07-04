@@ -2,13 +2,24 @@ import React from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import { Formik, Field } from 'formik';
+import { string, object } from 'yup';
 
 import Layout from './Layout';
 import { SignInComponent } from '../generated/apolloComponents';
 import { ME_QUERY } from '../graphql/user/queries/me';
 import { InputField } from './InputField';
 
-const SignInForm = () => {
+export interface FormValues {
+  login: string;
+  password: string;
+}
+
+const initialValues: FormValues = {
+  login: '',
+  password: '',
+};
+
+const SignInForm: React.FC = () => {
   const handleSignIn = async (values: any, mutation: any) => {
     const { login, password } = values;
     const response = await mutation({
@@ -27,13 +38,14 @@ const SignInForm = () => {
       <SignInComponent refetchQueries={[{ query: ME_QUERY }]}>
         {(signIn, { error, loading }) => (
           <Formik
-            initialValues={{
-              login: '',
-              password: '',
-            }}
-            onSubmit={values => handleSignIn(values, signIn)}
+            initialValues={initialValues}
+            onSubmit={(values: FormValues) => handleSignIn(values, signIn)}
+            validationSchema={object().shape({
+              login: string().required('Field is required.'),
+              password: string().required('Password is required'),
+            })}
           >
-            {({ values, handleSubmit }) => {
+            {({ handleSubmit }) => {
               return (
                 <div>
                   <h1>Sign In</h1>
@@ -41,21 +53,13 @@ const SignInForm = () => {
                     {loading ? <p>loading</p> : null}
                     {error ? <p>{error.message}</p> : null}
                     <div>
-                      <Field
-                        name="login"
-                        placeholder="Username or Email"
-                        type="text"
-                        component={InputField}
-                        value={values.login}
-                      />
+                      <Field name="login" type="text" component={InputField} />
                     </div>
                     <div>
                       <Field
                         name="password"
-                        placeholder="Password"
                         type="password"
                         component={InputField}
-                        value={values.password}
                       />
                     </div>
                     <div>
