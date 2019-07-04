@@ -7,8 +7,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
   body {
-    @import url('https://fonts.googleapis.com/css?family=Oxygen&display=swap');
-    font-family: 'Oxygen', sans-serif;
+    @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+    font-family: 'Nunito', sans-serif;
     color: black;
   }
 

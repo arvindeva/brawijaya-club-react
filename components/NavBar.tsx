@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { MeComponent, SignOutComponent } from '../generated/apolloComponents';
 import { ME_QUERY } from '../graphql/user/queries/me';
 import { Button } from '../pages/index';
+import Router from 'next/router';
 
 const StyledNavBar = styled.div`
   position: fixed;
@@ -40,7 +41,7 @@ const StyledNavBar = styled.div`
 const NavBar = () => (
   <nav>
     <MeComponent>
-      {({ data, loading, error }) => {
+      {({ data }) => {
         return (
           <StyledNavBar>
             <div>
@@ -52,9 +53,9 @@ const NavBar = () => (
               <Link href="/about">
                 <a>About</a>
               </Link>
-              <Link href="/initial-props">
+              {/* <Link href="/initial-props">
                 <a>With Initial Props</a>
-              </Link>
+              </Link> */}
               {data && data.me ? (
                 <div>
                   <Link href="/profile">
@@ -66,6 +67,9 @@ const NavBar = () => (
                         onClick={async () => {
                           const response = await signOut();
                           console.log(response);
+                          if (response) {
+                            Router.push('/');
+                          }
                         }}
                       >
                         Sign Out

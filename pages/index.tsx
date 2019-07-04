@@ -13,7 +13,7 @@ export const Button = styled.button`
   background: #ff403a;
   border: none;
   border-radius: 0.4rem;
-  font-family: 'Helvetica', 'Source Sans Pro', sans-serif;
+  font-family: 'Nunito', sans-serif;
   padding: 1rem;
   font-size: 1rem;
   margin: 1rem;
@@ -34,7 +34,7 @@ const IndexPage = () => {
               console.log(response);
             }}
           >
-            Call SignIn mutation
+            Sign In mutation
           </Button>
         )}
       </SignInComponent>
@@ -46,7 +46,7 @@ const IndexPage = () => {
               console.log(response);
             }}
           >
-            Call SignOut mutation
+            Sign Out mutation
           </Button>
         )}
       </SignOutComponent>
