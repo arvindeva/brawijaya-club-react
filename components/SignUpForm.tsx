@@ -9,6 +9,7 @@ import { SignUpComponent } from '../generated/apolloComponents';
 import { ME_QUERY } from '../graphql/user/queries/me';
 import { InputField } from './InputField';
 import { Button } from './Button';
+import ErrorMessage from './ErrorMessage';
 
 const StyledSignUpForm = styled.div`
   text-align: center;
@@ -56,8 +57,8 @@ const SignUpForm = () => {
                 <StyledSignUpForm>
                   <h1>Sign Up</h1>
                   <form onSubmit={handleSubmit}>
-                    {error ? <p>{error.message}</p> : null}
-                    {loading ? <p>Loading...</p> : null}
+                    {loading ? <p>Signing up... Please wait... </p> : null}
+                    {error ? <ErrorMessage error={error} /> : null}
                     <div>
                       <Field
                         name="email"

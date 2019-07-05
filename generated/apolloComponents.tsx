@@ -164,7 +164,12 @@ export type SignUpMutation = { __typename?: 'Mutation' } & {
 export type MeQueryVariables = {};
 
 export type MeQuery = { __typename?: 'Query' } & {
-  me: Maybe<{ __typename?: 'User' } & Pick<User, 'id' | 'username'>>;
+  me: Maybe<
+    { __typename?: 'User' } & Pick<
+      User,
+      'id' | 'username' | 'email' | 'createdAt' | 'updatedAt'
+    >
+  >;
 };
 
 export const LeaderboardsDocument = gql`
@@ -354,6 +359,9 @@ export const MeDocument = gql`
     me {
       id
       username
+      email
+      createdAt
+      updatedAt
     }
   }
 `;

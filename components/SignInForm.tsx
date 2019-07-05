@@ -10,6 +10,7 @@ import { SignInComponent } from '../generated/apolloComponents';
 import { ME_QUERY } from '../graphql/user/queries/me';
 import { InputField } from './InputField';
 import { Button } from './Button';
+import ErrorMessage from './ErrorMessage';
 
 const StyledSignInForm = styled.div`
   text-align: center;
@@ -57,8 +58,8 @@ const SignInForm: React.FC = () => {
                 <StyledSignInForm>
                   <h1>Sign In</h1>
                   <form onSubmit={handleSubmit}>
-                    {loading ? <p>loading</p> : null}
-                    {error ? <p>{error.message}</p> : null}
+                    {loading ? <p>Signing up... Please wait...</p> : null}
+                    {error ? <ErrorMessage error={error} /> : null}
                     <div>
                       <Field
                         name="login"
