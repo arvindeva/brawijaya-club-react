@@ -3,7 +3,6 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { MeComponent, SignOutComponent } from '../generated/apolloComponents';
 import { ME_QUERY } from '../graphql/user/queries/me';
-import { Button } from '../pages/index';
 import Router from 'next/router';
 
 const StyledNavBar = styled.div`
@@ -25,7 +24,7 @@ const StyledNavBar = styled.div`
 
   .nav-links {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     grid-gap: 2rem;
     align-items: center;
   }
@@ -34,6 +33,11 @@ const StyledNavBar = styled.div`
     color: white;
     text-decoration: none;
     font-size: 1rem;
+  }
+
+  p {
+    color: white;
+    cursor: pointer;
   }
 `;
 
@@ -52,30 +56,26 @@ const NavBar = () => (
               <Link href="/about">
                 <a>About</a>
               </Link>
-              {/* <Link href="/initial-props">
-                <a>With Initial Props</a>
-              </Link> */}
               {data && data.me ? (
-                <div>
+                <>
                   <Link href="/profile">
                     <a>{data.me.username}</a>
                   </Link>
                   <SignOutComponent refetchQueries={[{ query: ME_QUERY }]}>
                     {signOut => (
-                      <Button
+                      <p
                         onClick={async () => {
                           const response = await signOut();
-                          console.log(response);
                           if (response) {
                             Router.push('/');
                           }
                         }}
                       >
                         Sign Out
-                      </Button>
+                      </p>
                     )}
                   </SignOutComponent>
-                </div>
+                </>
               ) : (
                 <Link href="/signin">
                   <a>Sign In</a>

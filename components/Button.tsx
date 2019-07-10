@@ -5,7 +5,7 @@ export const Button = styled.button`
   background: #ff403a;
   border: 2px solid #ff403a;
   border-radius: 0.4rem;
-  font-family: 'Nunito', sans-serif;
+  font-family: inherit;
   padding: 0.3rem 1rem;
   font-size: 1rem;
   cursor: pointer;

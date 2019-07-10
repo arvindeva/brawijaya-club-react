@@ -58,7 +58,9 @@ const SignUpForm = () => {
                   <h1>Sign Up</h1>
                   <form onSubmit={handleSubmit}>
                     {loading ? <p>Signing up... Please wait... </p> : null}
-                    {error ? <ErrorMessage error={error} /> : null}
+                    {error ? (
+                      <ErrorMessage>{error.message}</ErrorMessage>
+                    ) : null}
                     <div>
                       <Field
                         name="email"

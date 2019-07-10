@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FieldProps } from 'formik';
+
 import { FormValues } from './SignInForm';
+import ErrorMessage from './ErrorMessage';
 
 const InputWrapper = styled.div`
   margin: 1rem 0;
@@ -12,13 +14,9 @@ const TextInput = styled.input`
   border-radius: 5px;
   height: 2rem;
   font-size: 1rem;
-  font-family: 'Nunito', sans-serif;
+  font-family: inherit;
   padding: 0 0.5rem;
   min-width: 300px;
-`;
-
-const ErrorMessage = styled.div`
-  color: red;
 `;
 
 const InputLabel = styled.label`

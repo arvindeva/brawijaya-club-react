@@ -5,14 +5,8 @@ const StyledErrorMessage = styled.div`
   color: red;
 `;
 
-interface ErrorProps {
-  error: any;
-}
-
-const ErrorMessage: React.FC<ErrorProps> = ({ error }) => (
-  <StyledErrorMessage>
-    <p>{error.message}</p>
-  </StyledErrorMessage>
+const ErrorMessage: React.FC = ({ children }) => (
+  <StyledErrorMessage>{children}</StyledErrorMessage>
 );
 
 export default ErrorMessage;
