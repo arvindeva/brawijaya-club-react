@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
 
   }
   body {
+    @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     color: black;
   }

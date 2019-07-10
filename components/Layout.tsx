@@ -33,7 +33,17 @@ const Layout: React.FunctionComponent<Props> = ({
     <Main>{children}</Main>
     <footer>
       <hr />
-      <span>I'm here to stay (Footer)</span>
+      <p>Brawijaya leaderboards</p>
+      <p>Made with: React, TypeScript, GraphQL</p>
+      <p>
+        View source on{' '}
+        <a
+          href="https://github.com/arvindeva/brawijaya-club-react"
+          target="blank"
+        >
+          github
+        </a>
+      </p>
     </footer>
   </div>
 );
