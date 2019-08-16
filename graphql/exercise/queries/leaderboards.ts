@@ -2,7 +2,7 @@ import { gql } from 'apollo-boost';
 
 export const LEADERBOARDS_QUERY = gql`
   query Leaderboards {
-    leaderboards(name: "bench") {
+    leaderboards(name: "deadlift") {
       id
       name
       sets

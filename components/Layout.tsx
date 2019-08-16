@@ -17,10 +17,7 @@ const Main = styled.main`
   min-height: 100vh;
 `;
 
-const Layout: React.FunctionComponent<Props> = ({
-  children,
-  title = 'Title',
-}) => (
+const Layout: React.FC<Props> = ({ children, title = 'Title' }) => (
   <div>
     <Head>
       <title>{title}</title>

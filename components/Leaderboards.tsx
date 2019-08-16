@@ -4,7 +4,7 @@ import { LeaderboardsComponent } from '../generated/apolloComponents';
 
 const StyledLeaderboards = styled.div``;
 
-const Leaderboards = () => {
+const Leaderboards: React.FC = () => {
   return (
     <StyledLeaderboards>
       <h1>Public Leaderboards</h1>

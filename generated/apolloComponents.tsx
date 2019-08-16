@@ -174,7 +174,7 @@ export type MeQuery = { __typename?: 'Query' } & {
 
 export const LeaderboardsDocument = gql`
   query Leaderboards {
-    leaderboards(name: "bench") {
+    leaderboards(name: "deadlift") {
       id
       name
       sets

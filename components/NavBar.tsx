@@ -41,7 +41,7 @@ const StyledNavBar = styled.div`
   }
 `;
 
-const NavBar = () => (
+const NavBar: React.FC = () => (
   <nav>
     <MeComponent>
       {({ data }) => {

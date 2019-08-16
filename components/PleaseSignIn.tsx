@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const PleaseSignIn = () => (
+const PleaseSignIn: React.FC = () => (
   <div>
     <h2>
       Please{' '}
