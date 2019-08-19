@@ -1,3 +1,3 @@
 # Brawi react
 
-React, TypeScript, GraphQL.
+React, TypeScript, GraphQL. Styled Components (?)
